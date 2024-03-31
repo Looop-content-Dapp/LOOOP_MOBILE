@@ -1,26 +1,17 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {SafeAreaView, Text, useColorScheme} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import StackNavigation from './navigation/StackNavigation';
+import {StatusBar, View} from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <Text>ello world</Text>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <View style={{flex: 1}}>
+        <StatusBar barStyle="default" backgroundColor="#000000" />
+        <StackNavigation />
+      </View>
+    </SafeAreaProvider>
   );
 }
 
