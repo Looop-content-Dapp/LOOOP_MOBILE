@@ -2,6 +2,7 @@
 import {
   Image,
   ImageBackground,
+  Pressable,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -15,15 +16,28 @@ import Music from '../../components/subscribe/Music';
 import Streams from '../../components/subscribe/Streams';
 import Collectible from '../../components/subscribe/Collectible';
 import {BottomSheet} from '@rneui/themed';
-import {NavigationProp, ParamListBase} from '@react-navigation/native';
+import {
+  NavigationProp,
+  ParamListBase,
+  RouteProp,
+} from '@react-navigation/native';
 
-// Define the interface for your component's props
-interface SubscribeProps {
+// Assuming you have a StackNavigator defined somewhere in your app
+type RootStackParamList = {
+  Subscribe: {image: string; name: string; follow: string}; // Define your parameter structure here
+};
+
+type SubscribeScreenRouteProp = RouteProp<RootStackParamList, 'Subscribe'>;
+
+type Props = {
+  route: SubscribeScreenRouteProp;
   navigation: NavigationProp<ParamListBase>;
-}
+};
 
-const Subscribe = ({navigation}: SubscribeProps) => {
+const Subscribe = ({navigation, route}: Props) => {
   const [isVisible, setIsVisible] = useState(false);
+  const {image = '', name = '', follow = ''} = route.params || {};
+  console.log(image);
   const tabs = [
     {
       title: 'Music',
@@ -41,12 +55,44 @@ const Subscribe = ({navigation}: SubscribeProps) => {
   return (
     <SafeAreaView style={{flex: 1, minHeight: '100%'}}>
       <ScrollView>
-        <ImageBackground
-          source={require('../../assets/images/Rema.jpeg')}
-          className="h-[200px] w-[100%]">
-          <Text>back</Text>
-        </ImageBackground>
-        <ArtistInfo route={navigation} isActive={setIsVisible} />
+        {image ? (
+          <ImageBackground
+            source={{
+              uri: image,
+            }}
+            className="h-[200px] w-[100%]">
+            <Pressable
+              onPress={() => navigation.goBack()}
+              className="border-2 border-[#fff] h-[30px] w-[30px] rounded-full p-2 items-center justify-center">
+              <Image
+                source={require('../../assets/images/arrow.png')}
+                className="h-[20px] w-[20px]"
+              />
+            </Pressable>
+          </ImageBackground>
+        ) : (
+          <ImageBackground
+            source={{
+              uri: image,
+            }}
+            className="h-[200px] w-[100%]">
+            <Pressable
+              onPress={() => navigation.goBack()}
+              className="border-2 border-[#fff] h-[30px] w-[30px] rounded-full p-2 items-center justify-center">
+              <Image
+                source={require('../../assets/images/arrow.png')}
+                className="h-[20px] w-[20px]"
+              />
+            </Pressable>
+          </ImageBackground>
+        )}
+
+        <ArtistInfo
+          isActive={setIsVisible}
+          image={image}
+          name={name}
+          follow={follow}
+        />
         <SelectionTab tabs={tabs} />
       </ScrollView>
       <BottomSheet
@@ -70,7 +116,13 @@ const Subscribe = ({navigation}: SubscribeProps) => {
               Looop tokens
             </Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate('/MintNft')}
+              onPress={() =>
+                navigation.navigate('MintNft', {
+                  image: image,
+                  name: name,
+                  follow: follow,
+                })
+              }
               className="bg-[#A94FB4] w-full items-center py-5 rounded-[38px]">
               <Text className="text-[#fff] font-bold">
                 Subscribe to creator
