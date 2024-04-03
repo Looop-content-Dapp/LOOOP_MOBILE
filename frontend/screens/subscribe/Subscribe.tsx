@@ -17,6 +17,8 @@ import Collectible from '../../components/subscribe/Collectible';
 import {BottomSheet} from '@rneui/themed';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
+import ComingSoon from '../../assets/svg/comingsoon.svg';
+
 // Define the interface for your component's props
 interface SubscribeProps {
   navigation: NavigationProp<ParamListBase>;
