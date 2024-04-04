@@ -9,6 +9,7 @@ import Library from '../screens/library/Library';
 import {Discover} from '../screens/discover';
 import Search from '../screens/discover/Search';
 import MusicDetails from '../screens/discover/MusicDetails';
+import MusicPlayer from '../screens/discover/MusicPlayer';
 
 const Stack = createNativeStackNavigator();
 
@@ -71,7 +72,14 @@ const StackNavigation = () => {
           name="MusicPage"
           component={MusicDetails}
           options={{
-           headerShown: false,
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MusicPlayer"
+          component={MusicPlayer}
+          options={{
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

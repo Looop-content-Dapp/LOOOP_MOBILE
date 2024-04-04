@@ -680,7 +680,7 @@ export const newStuff = [
       ],
     },
   ],
-    image: require('../assets/images/music1.png'),
+    image: require('../assets/images/metro.webp'),
   },
   {
     title: 'Not Now I’m Busy',
@@ -721,58 +721,75 @@ export const newStuff = [
     image: require('../assets/images/music2.png'),
   },
   {
-    title: 'Like that',
+    title: 'Calm Down',
     artist: [
-      'Joyner Lucas',
+      'Rema',
+      'Selena Gomez',
     ],
     type: 'single',
     tracks:[
     {
-      title: 'Like That',
+      title: 'Calm Down',
       artist: [
-        'Metro Boomin',
-        'Future',
+        'Rema',
+      'Selena Gomez',
       ],
     },
   ],
-    image: require('../assets/images/music1.png'),
+    image: require('../assets/images/calmdown.jpg'),
   },
   {
-    title: 'Not Now I’m Busy',
+    title: 'I Told Them',
     artist: [
-      'Joyner Lucas',
+      'Burna Boy',
     ],
     type: 'album',
     tracks:[
     {
-      title: 'Put me on',
+      title: 'I told them',
       artist: [
-        'Joyner Lucas',
+        'Burna Boy',
       ],
       uri: '',
     },
     {
-      title: 'I`m Ill',
+      title: 'Sitting on top of the world',
       artist: [
-        'Joyner Lucas',
+        'Burna boy',
+        '21 Savage',
       ],
       uri: '',
     },
     {
-      title: 'Waiting on this',
+      title: 'Virgil',
       artist: [
-        'Joyner Lucas',
+        'Burna Boy',
       ],
       uri: '',
     },
     {
-      title: 'Put me on',
+      title: 'Normal',
       artist: [
-        'Joyner Lucas',
+        'Burna Boy',
+      ],
+      uri: '',
+    },
+    {
+      title: 'Tested, Approved & trusted',
+      artist: [
+        'Burna Boy',
+      ],
+      uri: '',
+    },
+    {
+      title: 'Cheat on me',
+      artist: [
+        'Burna Boy',
+        'Dave',
       ],
       uri: '',
     },
   ],
-    image: require('../assets/images/music2.png'),
+    image: require('../assets/images/itoldthem.webp'),
   },
 ];
