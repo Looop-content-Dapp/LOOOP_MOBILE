@@ -22,7 +22,7 @@ const Discover = ({navigation}: SubscribeProps) => {
         }}>
         <FilterByYou />
         <FilterByMomments />
-        <NewStuff />
+        <NewStuff route={navigation} />
         <BasedOnFav route={navigation} />
       </ScrollView>
     </SafeAreaView>

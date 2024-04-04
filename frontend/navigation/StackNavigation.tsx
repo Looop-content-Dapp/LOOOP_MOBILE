@@ -8,6 +8,7 @@ import PayNft from '../screens/subscribe/PayNft';
 import Library from '../screens/library/Library';
 import {Discover} from '../screens/discover';
 import Search from '../screens/discover/Search';
+import MusicDetails from '../screens/discover/MusicDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,13 @@ const StackNavigation = () => {
           options={{
             header: () => <Header title={'Subscribe'} />,
             presentation: 'modal',
+          }}
+        />
+        <Stack.Screen
+          name="MusicPage"
+          component={MusicDetails}
+          options={{
+           headerShown: false,
           }}
         />
       </Stack.Navigator>

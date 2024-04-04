@@ -31,6 +31,9 @@ const BasedOnFav = ({route}: Props) => {
               }}
               className="w-[140px] h-[140px] m-[8px] rounded-full bg-white"
             />
+            <View>
+              <Text className="text-[#fff] font-bold text-[14px]">{item.name}</Text>
+            </View>
           </Pressable>
         ))}
       </ScrollView>

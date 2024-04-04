@@ -1,47 +1,52 @@
-/* eslint-disable prettier/prettier */
-import { View, ScrollView, Text } from 'react-native';
+import {View, ScrollView, Text, Image, Pressable} from 'react-native';
 import React from 'react';
+import {newStuff} from '../../utils';
+import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
-const NewStuff = () => {
-    const monments = [
-        {
-            color: '#643EFF',
-            moments: 'Chill',
-        },
-        {
-            color: '#929DFF',
-            moments: 'Energy',
-        },
-        {
-            color: '#BD68FF',
-            moments: 'Romance',
-        },
-        {
-            color: '#FF668B',
-            moments: 'Workout',
-        },
-        {
-            color: '#FFAE35',
-            moments: 'Chill',
-        },
-    ];
+type Props = {
+  route: NavigationProp<ParamListBase>;
+};
+
+const NewStuff = ({route}: Props) => {
   return (
-<View className="h-[254px] mt-3">
-    <Text className="text-[#fff] text-[18px]">New on the block</Text>
-<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      {monments.map((item, index) => (
-       <View key={index} className="items-start">
-         <View className="w-[140px] h-[140px] m-[8px] rounded-[15px]" style={{
-            backgroundColor: item.color,
-        }} />
-       <View className="w-[140px] px-4">
-       <Text className="text-[#fff]">{item.moments}</Text>
-       <Text className="text-[#fff]">{item.moments}</Text>
-       </View>
-       </View>
-      ))}
-    </ScrollView>
-</View>
+    <View className="h-[254px] mt-3">
+      <Text className="text-[#fff] text-[18px]">New on the block</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {newStuff.map((item, index) => (
+          <Pressable
+            key={index}
+            onPress={() =>
+              route.navigate('MusicPage', {
+                title: item.title,
+                image: item.image,
+                track: item.tracks,
+                type: item.type,
+                artist: item.artist,
+              })
+            }
+            className="flex items-center min-w-[140px] h-[214px] rounded-lg m-2">
+            <Image
+              source={item.image}
+              className="w-full h-[140px] rounded-lg"
+            />
+            <View className="flex flex-col">
+              <Text className="text-white text-lg font-semibold">
+                {item.title}
+              </Text>
+              <Text className="text-white">{item.artist}</Text>
+              <Text
+                className={`${
+                  item.type === 'single'
+                    ? 'bg-green-500 text-[#000]'
+                    : 'bg-purple-500 text-[#fff]'
+                } font-bold px-2 items-center py-1 rounded-[24px] w-[60px] mt-2`}>
+                {item.type}
+              </Text>
+            </View>
+          </Pressable>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 

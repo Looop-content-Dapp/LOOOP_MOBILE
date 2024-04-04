@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@peculiar/webcrypto": "^1.4.6",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "@rneui/base": "^0.0.0-edge.2",
@@ -25,6 +26,7 @@
     "@web5/credentials": "0.4.1",
     "@web5/dids": "0.2.4",
     "@web5/identity-agent": "^0.2.6",
+    "axios": "^1.6.8",
     "buffer": "^6.0.3",
     "crypto": "^1.0.1",
     "nativewind": "^2.0.11",
