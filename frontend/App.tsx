@@ -5,6 +5,7 @@ import {StatusBar, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {DataProvider} from './context/DataContext';
 import {HuddleClient, HuddleProvider} from '@huddle01/react';
+import {StreamProvider} from './context/StreamContext';
 
 const huddleClient = new HuddleClient({
   projectId: 'BGzMBh-NTpaFZ9sdYjwMthzTIGbuJrGY',
@@ -18,12 +19,16 @@ const huddleClient = new HuddleClient({
 function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
-      <HuddleProvider key="huddle01-provider" client={huddleClient}>
+      <HuddleProvider
+        key="bXyBT4jn3ahSgflply_Blei901u7LbVHr"
+        client={huddleClient}>
         <View style={{flex: 1}}>
           <StatusBar barStyle="default" backgroundColor="#000000" />
-          <DataProvider>
-            <StackNavigation />
-          </DataProvider>
+          <StreamProvider>
+            <DataProvider>
+              <StackNavigation />
+            </DataProvider>
+          </StreamProvider>
         </View>
       </HuddleProvider>
     </SafeAreaProvider>

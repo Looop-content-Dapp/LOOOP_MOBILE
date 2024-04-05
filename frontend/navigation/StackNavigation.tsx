@@ -64,8 +64,8 @@ const StackNavigation = () => {
           name="Search"
           component={Search}
           options={{
-            header: () => <Header title={'Subscribe'} />,
             presentation: 'modal',
+            headerShown: false,
           }}
         />
         <Stack.Screen
