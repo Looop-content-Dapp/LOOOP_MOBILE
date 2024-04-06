@@ -21,7 +21,6 @@ import {
   ParamListBase,
   RouteProp,
 } from '@react-navigation/native';
-import {useDataStore} from '../../context/DataContext';
 import {
   DocumentData,
   collection,

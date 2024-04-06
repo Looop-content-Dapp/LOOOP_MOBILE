@@ -1,18 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
-import {
-  View,
-  Text,
-  Pressable,
-  Image,
-  TouchableOpacity,
-  Modal,
-} from 'react-native';
+import {View, Text, Pressable, Image, TouchableOpacity} from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Entypo';
-import {Slider} from '@rneui/themed';
+import {BottomSheet, Slider} from '@rneui/themed';
 import {Iconify} from 'react-native-iconify';
+import GiftCreatorModal from '../../components/GiftCreatorModal';
+import ShareBottomSheet from '../../components/ShareBottomSheet';
 
 interface MusicDetailsParams {
   title?: string; // Use optional chaining in case 'title' is not always provided
@@ -36,6 +31,7 @@ const MusicPlayer = () => {
   const {goBack} = useNavigation();
   const {params} = route as {params: MusicDetailsParams};
   const [modalVisible, setModalVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   // State to manage play state
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -145,58 +141,24 @@ const MusicPlayer = () => {
               Add to playlist
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity className="border-2 border-[#Fff] w-[40px] h-[40px] items-center justify-center rounded-full">
+          <TouchableOpacity
+            onPress={() => setIsVisible(true)}
+            className="border-2 border-[#Fff] w-[40px] h-[40px] items-center justify-center rounded-full">
             <Icon name="share" size={24} color="#fff" />
           </TouchableOpacity>
         </View>
       </View>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
+      <BottomSheet
+        modalProps={{}}
+        isVisible={isVisible}
+        onBackdropPress={() => setIsVisible(false)}
+        backdropStyle={{
+          height: 400,
+          width: '100%',
         }}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'rgba(0,0,0,0.5)',
-          }}>
-          <View
-            className="p-9"
-            style={{
-              backgroundColor: '#12141B',
-              padding: 20,
-              borderRadius: 10,
-              width: 382,
-              height: 'auto',
-            }}>
-            <View className="space-y-[16px]">
-              <Text className="text-[#fff] font-bold text-[24px]">
-                Gift Creator
-              </Text>
-              <Text className="text-[14px] text-[#fff] semibold">
-                You can now gift your favorite creators with Loop tokens
-              </Text>
-              <Pressable className="border border-[#fff] w-[90px] py-2.5 rounded-[32px] flex-row items-center justify-center">
-                <Image source={require('../../assets/images/profileimg.png')} />
-                <Text className="text-[#fff]">5000</Text>
-              </Pressable>
-            </View>
-            <View className="">
-              <Text>Choose creator/Collaborator</Text>
-            </View>
-            <TouchableOpacity
-              onPress={toggleModal}
-              style={{alignSelf: 'flex-end'}}>
-              <Text>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+        <ShareBottomSheet title={title} image={image} artist={artist} />
+      </BottomSheet>
+      <GiftCreatorModal modalVisible={modalVisible} toggleModal={toggleModal} />
     </SafeAreaView>
   );
 };

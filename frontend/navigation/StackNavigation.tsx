@@ -27,7 +27,7 @@ const HomeStackScreen = () => (
     screenOptions={{
       headerShown: false,
       contentStyle: {
-        backgroundColor: '#000',
+        backgroundColor: '#0A0B0F',
       },
     }}>
     <HomeStack.Screen name="HomeScreen" component={Home} />
@@ -41,7 +41,7 @@ const DiscoverStackScreen = () => (
   <DiscoverStack.Navigator
     screenOptions={{
       contentStyle: {
-        backgroundColor: '#000',
+        backgroundColor: '#0A0B0F',
       },
     }}>
     <DiscoverStack.Screen
@@ -79,7 +79,7 @@ const LibraryStackScreen = () => (
   <LibraryStack.Navigator
     screenOptions={{
       contentStyle: {
-        backgroundColor: '#000',
+        backgroundColor: '#0A0B0F',
       },
     }}>
     <LibraryStack.Screen
@@ -97,7 +97,7 @@ const StreamsStackScreen = () => (
     screenOptions={{
       headerShown: false,
       contentStyle: {
-        backgroundColor: '#000',
+        backgroundColor: '#0A0B0F',
       },
     }}>
     <StreamsStack.Screen name="StreamPage" component={StreamDetails} />
@@ -112,14 +112,14 @@ const StackNavigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        screenOptions={({route}) => ({
+        screenOptions={{
           tabBarActiveTintColor: '#FF6D1B', // Color for active state
           tabBarInactiveTintColor: 'gray', // Color for inactive state
           tabBarStyle: {
             backgroundColor: '#000',
           },
           headerShown: false,
-        })}>
+        }}>
         <Tab.Screen
           name="Home"
           component={HomeStackScreen}
