@@ -12,6 +12,7 @@ import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Entypo';
 import {Slider} from '@rneui/themed';
+import {Iconify} from 'react-native-iconify';
 
 interface MusicDetailsParams {
   title?: string; // Use optional chaining in case 'title' is not always provided
@@ -32,15 +33,22 @@ interface MusicDetailsParams {
 
 const MusicPlayer = () => {
   const route = useRoute();
-  const {goBack, navigate} = useNavigation();
+  const {goBack} = useNavigation();
   const {params} = route as {params: MusicDetailsParams};
   const [modalVisible, setModalVisible] = useState(false);
+  // State to manage play state
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Function to toggle play state
+  const togglePlayState = () => {
+    setIsPlaying(!isPlaying);
+  };
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
 
-  const {title, artist, image, track, type} = params;
+  const {title, artist, image} = params;
   return (
     <SafeAreaView style={{flex: 1}}>
       <View className="flex-row items-center space-x-[130px] p-9">
@@ -74,7 +82,7 @@ const MusicPlayer = () => {
             minimumTrackTintColor="#FF6D1B" // Front color
             maximumTrackTintColor="#12141B" // Background color
             thumbTintColor="#FF6D1B" // Thumb color
-            onValueChange={value => console.log(value)}
+            // onValueChange={value => console.log(value)}
             thumbStyle={{
               width: 20,
               height: 20,
@@ -89,11 +97,39 @@ const MusicPlayer = () => {
 
       <View className="py-9">
         <View className="flex-row items-center justify-evenly">
-          <Icon name="repeat" color="white" size={24} />
-          <Icon name="controller-jump-to-start" color="white" size={24} />
-          <Icon name="controller-play" color="white" size={44} />
-          <Icon name="controller-next" color="white" size={24} />
-          <Icon name="shuffle" color="white" size={24} />
+          <Pressable
+            onPress={() => console.log('Repeat')}
+            className="border border-[#787A80] w-[40px] h-[40px] rounded-full items-center justify-center">
+            <Iconify icon="ph:repeat-bold" color="#787A80" size={24} />
+          </Pressable>
+          <Pressable
+            className="border border-[#fff] w-[56px] h-[56px] rounded-full items-center justify-center"
+            onPress={() => console.log('Jump to Start')}>
+            <Iconify
+              icon="flowbite:backward-step-solid"
+              color="white"
+              size={24}
+            />
+          </Pressable>
+          <Pressable
+            onPress={togglePlayState}
+            className="border border-[#fff] w-[72px] h-[72px] rounded-full items-center justify-center">
+            {!isPlaying ? (
+              <Iconify icon="solar:play-bold" color="white" size={44} />
+            ) : (
+              <Iconify icon="mingcute:pause-fill" color="white" size={44} />
+            )}
+          </Pressable>
+          <Pressable
+            onPress={() => console.log('Next')}
+            className="border border-[#fff] w-[56px] h-[56px] rounded-full items-center justify-center">
+            <Iconify icon="fluent:next-20-filled" color="white" size={24} />
+          </Pressable>
+          <Pressable
+            onPress={() => console.log('Shuffle')}
+            className="border border-[#787A80] w-[40px] h-[40px] rounded-full items-center justify-center">
+            <Iconify icon="basil:shuffle-outline" color="#787A80" size={24} />
+          </Pressable>
         </View>
 
         <View className="flex-row items-center px-4 space-x-6 justify-evenly py-12">

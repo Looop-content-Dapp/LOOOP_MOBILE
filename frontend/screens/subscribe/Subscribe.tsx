@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import ArtistInfo from '../../components/subscribe/ArtistInfo';
 import SelectionTab from '../../components/subscribe/SelectionTab';
@@ -21,10 +21,20 @@ import {
   ParamListBase,
   RouteProp,
 } from '@react-navigation/native';
+import {useDataStore} from '../../context/DataContext';
+import {
+  DocumentData,
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from 'firebase/firestore';
+import {db} from '../../firebase';
 
 // Assuming you have a StackNavigator defined somewhere in your app
 type RootStackParamList = {
-  Subscribe: {image: string; name: string; follow: string}; // Define your parameter structure here
+  Subscribe: {image: string; name: string; follow: string; owner: string}; // Define your parameter structure here
 };
 
 type SubscribeScreenRouteProp = RouteProp<RootStackParamList, 'Subscribe'>;
@@ -36,8 +46,32 @@ type Props = {
 
 const Subscribe = ({navigation, route}: Props) => {
   const [isVisible, setIsVisible] = useState(false);
-  const {image = '', name = '', follow = ''} = route.params || {};
-  console.log(image);
+  const {image = '', name = '', follow = '', owner} = route.params || {};
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<DocumentData[]>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const streamsQuery = query(
+          collection(db, 'streams'),
+          orderBy('created_at', 'desc'),
+          where('host', '==', owner),
+        );
+        const querySnapshot = await getDocs(streamsQuery);
+        const resultdata = querySnapshot.docs.map(doc => doc.data());
+        setResult(resultdata);
+      } catch (catchError) {
+        console.log('error filtering', catchError);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [owner]);
+
   const tabs = [
     {
       title: 'Music',
@@ -45,7 +79,7 @@ const Subscribe = ({navigation, route}: Props) => {
     },
     {
       title: 'Streams',
-      components: <Streams />,
+      components: <Streams loading={loading} results={result} />,
     },
     {
       title: 'Collectible',
@@ -93,7 +127,7 @@ const Subscribe = ({navigation, route}: Props) => {
           name={name}
           follow={follow}
         />
-        <SelectionTab tabs={tabs} />
+        <SelectionTab tabs={tabs} loading={loading} results={result} />
       </ScrollView>
       <BottomSheet
         modalProps={{}}

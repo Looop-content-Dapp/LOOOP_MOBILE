@@ -1,120 +1,59 @@
 // DataContext.tsx
+
+import {collection, getDocs} from 'firebase/firestore';
 import React, {createContext, useContext, useState, useEffect} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {fetchSpotifyData} from '../api';
-import axios from 'axios';
+import {db} from '../firebase';
 
 type ContextProps = {
   children: React.ReactNode;
 };
 
 interface SpotifyData {
-  artists: any[]; // Define a more specific type based on your data structure
+  data: any;
+  loading: boolean;
+  error: any;
 }
 
 const DataContext = createContext<SpotifyData | undefined>(undefined);
 
-export const useSpotifyData = () => {
-  return useContext(DataContext);
+export const useDataStore = () => {
+  const context = useContext(DataContext);
+  if (!context) {
+    throw new Error('useFirestore must be used within a FirestoreProvider');
+  }
+  return context;
 };
 
 export const DataProvider = ({children}: ContextProps) => {
-  const [artists, setArtists] = useState<any[]>([]); // Initialize with an empty array or a loading state
-
-  const [accessToken, setAccessToken] = useState('');
-  console.log(accessToken);
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<any>(null);
 
   useEffect(() => {
-    // Function to retrieve access token from AsyncStorage
-    const retrieveAccessToken = async () => {
+    const fetchData = async () => {
+      setLoading(true);
       try {
-        const storedAccessToken = await AsyncStorage.getItem('accessToken');
-        if (storedAccessToken !== null) {
-          setAccessToken(storedAccessToken);
-        }
-      } catch (error) {
-        console.error('Error retrieving access token:', error);
+        const querySnapshot = await getDocs(collection(db, 'streams'));
+        const result = querySnapshot.docs.map(doc => doc.data());
+        setData(result);
+        setError(null);
+      } catch (catchError) {
+        setError(catchError);
+      } finally {
+        setLoading(false);
       }
     };
 
-    retrieveAccessToken();
+    fetchData();
   }, []);
-
-  useEffect(() => {
-    // Function to fetch access token
-    const getAccessToken = async () => {
-      const clientId = '65d8a76f72c9478ea2ac7482373e6352';
-      const clientSecret = '1de7e1ae1186436db12f0c9bf33c5e99';
-      const response = await axios.post(
-        'https://accounts.spotify.com/api/token',
-        'grant_type=client_credentials',
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            Authorization:
-              'Basic ' +
-              Buffer.from(clientId + ':' + clientSecret).toString('base64'),
-          },
-        },
-      );
-      setAccessToken(response.data.access_token);
-
-      // Store access token in AsyncStorage
-      try {
-        await AsyncStorage.setItem('accessToken', response.data.access_token);
-      } catch (error) {
-        console.error('Error storing access token:', error);
-      }
-    };
-
-    getAccessToken();
-  }, []);
-
-  const getIdOfArtist = async () => {
-    const options = {
-      method: 'GET',
-      url: 'https://spotify-scraper.p.rapidapi.com/v1/artist/search',
-      params: {name: 'Ed Sheeran'},
-      headers: {
-        'X-RapidAPI-Key': 'fb5458dc5amsh935a82bf692231cp139b57jsne56249dad61d',
-        'X-RapidAPI-Host': 'spotify-scraper.p.rapidapi.com',
-      },
-    };
-
-    try {
-      const response = await axios.request(options);
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    getIdOfArtist();
-    const fetchArtists = async () => {
-      if (!accessToken) {
-        return console.log('no accesstoken');
-      }
-      try {
-        // const response = await axios.get(
-        //   'https://api.spotify.com/v1/search?q=&type=artist',
-        //   {
-        //     headers: {
-        //       Authorization: `Bearer ${accessToken}`,
-        //     },
-        //   },
-        // );
-        // setArtists(response.data);
-        // console.log(response.data.artists.items);
-      } catch (error) {
-        console.error('Error fetching artists:', error);
-      }
-    };
-
-    fetchArtists();
-  }, [accessToken]);
-
   return (
-    <DataContext.Provider value={{artists}}>{children}</DataContext.Provider>
+    <DataContext.Provider
+      value={{
+        data,
+        loading,
+        error,
+      }}>
+      {children}
+    </DataContext.Provider>
   );
 };

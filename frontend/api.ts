@@ -18,7 +18,6 @@ export const fetchSpotifyData = async (params: string): Promise<any> => {
     };
     try {
        const response = await axios.request(options);
-       console.log(response.data);
        return response.data;
     } catch (error) {
        console.error(error);

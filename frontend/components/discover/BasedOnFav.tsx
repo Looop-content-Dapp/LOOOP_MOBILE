@@ -21,6 +21,7 @@ const BasedOnFav = ({route}: Props) => {
                 image: item.image,
                 name: item.name,
                 follow: item.followers,
+                owner: item.owner,
               })
             }
             key={index}

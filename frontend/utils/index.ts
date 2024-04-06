@@ -289,12 +289,12 @@ export const truncate = (text: string, count = 35) =>
 
 export const artistsArr = [
   {
-    name: 'Alice Artistry',
+    name: 'Portable',
     owner: '0x930F888B18a3Af35f6e7d01eF5072d183403bAf0',
     description:
       'An innovative artist pushing the boundaries of traditional and digital art forms.',
     image:
-      'https://gateway.pinata.cloud/ipfs/QmevqC9pXa1K31SR5TgD3iK4iq7a1sLHgdhq6HDKjuYWmY',
+      'https://i.scdn.co/image/ab6761610000e5eb8a61d8a305ed2b81eaac53ed',
     external_url: 'https://www.aliceartistry.com',
     attributes: [
       {

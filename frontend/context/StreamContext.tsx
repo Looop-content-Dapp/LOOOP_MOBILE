@@ -3,7 +3,7 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 
 interface MeetingContextData {
-  createRoom: (token: string) => Promise<void>;
+  createRoom: () => Promise<void>;
   liveEventData: any;
   setLiveEventData: React.Dispatch<React.SetStateAction<any>>;
   joinroom: (roomId: string) => Promise<void>;
@@ -29,7 +29,7 @@ export const StreamProvider = ({children}: {children: React.ReactNode}) => {
         'https://api.huddle01.com/api/v1/create-room',
         {
           title: 'Huddle01-Test',
-          hostWallets: ['0x29f54719E88332e70550cf8737293436E9d7b10b'],
+          hostWallets: ['0x930F888B18a3Af35f6e7d01eF5072d183403bAf0'],
         },
         {
           headers: {
