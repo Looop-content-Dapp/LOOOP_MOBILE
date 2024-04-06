@@ -4,15 +4,18 @@ import React, {useState} from 'react';
 import Music from './Music';
 import Streams from './Streams';
 import Collectible from './Collectible';
+import { DocumentData } from 'firebase/firestore';
 
 type Props = {
   tabs: {
     title: string;
     components: React.JSX.Element;
   }[];
+  loading: boolean;
+  results: DocumentData[] | undefined;
 };
 
-const SelectionTab = ({tabs}: Props) => {
+const SelectionTab = ({tabs, loading, results}: Props) => {
   const [active, setActive] = useState('Music');
   return (
     <View className="w-[100%]">
@@ -37,7 +40,7 @@ const SelectionTab = ({tabs}: Props) => {
         ))}
       </ScrollView>
       {active === 'Music' && <Music />}
-      {active === 'Streams' && <Streams />}
+      {active === 'Streams' && <Streams loading={loading} results={results}/>}
       {active === 'Collectible' && <Collectible />}
     </View>
   );

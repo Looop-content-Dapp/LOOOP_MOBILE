@@ -1,12 +1,24 @@
-/* eslint-disable prettier/prettier */
-import { View, TextInput, Alert } from 'react-native';
+import {TextInput, Pressable, Text} from 'react-native';
 import React from 'react';
+import {NavigationProp, ParamListBase} from '@react-navigation/native';
+import {Icon} from '@rneui/themed';
 
-const Input = () => {
+type Props = {
+  route: NavigationProp<ParamListBase>;
+};
+
+const Input = ({route}: Props) => {
   return (
-    <View className="flex-row items-center w-[80%] h-[56px] border border-gray-900 rounded-[10px]">
-     <TextInput onFocus={() => Alert.alert('Welcome')} className="w-full h-full text-[14px] px-2" placeholder="Search Creators, Artistes, Songs, Albums, Playlists" placeholderTextColor="#A5A6AA" />
-    </View>
+    <Pressable
+      onPress={() => route.navigate('Search')}
+      className="flex-row items-center w-[90%] h-[56px] border border-gray-900 rounded-[10px] px-2">
+      <Icon name="magnifying-glass" type="entypo" color="#A5A6AA" />
+      <TextInput
+        className="w-full h-full text-[14px] px-2"
+        placeholder="Search Creators, Artistes, Songs, Albums, Playlists"
+        placeholderTextColor="#A5A6AA"
+      />
+    </Pressable>
   );
 };
 

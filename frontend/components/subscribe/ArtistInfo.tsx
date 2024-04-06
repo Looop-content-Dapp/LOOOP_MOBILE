@@ -2,16 +2,18 @@ import {View, Text, Pressable, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 type Props = {
-  isActive: React.Dispatch<React.SetStateAction<boolean>>
-}
+  isActive: React.Dispatch<React.SetStateAction<boolean>>;
+  image: string,
+  name: any,
+  follow: any
+};
 
-const ArtistInfo = ({isActive}: Props) => {
- 
+const ArtistInfo = ({isActive, follow, name}: Props) => {
   return (
     <>
       <View className="h-[256px] m-4 space-y-[8px]">
         <View className="flex-row items-center space-x-2 w-[70%]">
-          <Text className="text-[28px] font-bold text-[#fff]">Rema</Text>
+          <Text className="text-[28px] font-bold text-[#fff]">{name}</Text>
           <Pressable>
             <Text className="text-[#2DD881] text-[12px]">Verified creator</Text>
           </Pressable>
@@ -22,7 +24,7 @@ const ArtistInfo = ({isActive}: Props) => {
 
         <View className="flex-row items-center space-x-3">
           <Text className="text-[16px] font-semibold text-[#787A80]">
-            500M Followers
+            {follow}M Followers
           </Text>
           <Text className="text-[16px] font-semibold text-[#787A80]">
             45M Subscriber

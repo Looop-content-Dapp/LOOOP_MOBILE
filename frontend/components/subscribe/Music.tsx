@@ -1,7 +1,5 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
-import Collectible from './Collectible';
-import Streams from './Streams';
 import Albums from './music/Albums';
 import Singles from './music/Singles';
 import Playlist from './music/Playlist';
@@ -13,7 +11,7 @@ const Music = () => {
       title: 'Albums',
     },
     {
-      title: 'Singlesa',
+      title: 'Singles',
     },
     {
       title: 'Playlist',
@@ -21,7 +19,7 @@ const Music = () => {
   ];
   return (
     <View>
-      <View className='flex-row'>
+      <View className="flex-row">
         {tabs.map((item, index) => (
           <TouchableOpacity
             key={index}

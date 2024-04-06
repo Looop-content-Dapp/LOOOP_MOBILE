@@ -7,14 +7,13 @@ import FilterByYou from '../../components/discover/FilterByYou';
 import FilterByMomments from '../../components/discover/FilterByMomments';
 import NewStuff from '../../components/discover/NewStuff';
 import BasedOnFav from '../../components/discover/BasedOnFav';
+import {SubscribeProps} from '../../export';
 
-
-
-const Discover = () => {
+const Discover = ({navigation}: SubscribeProps) => {
   return (
     <SafeAreaView
       style={{flex: 1, alignItems: 'center', minHeight: '100%', padding: 9}}>
-      <Input />
+      <Input route={navigation} />
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
@@ -23,8 +22,8 @@ const Discover = () => {
         }}>
         <FilterByYou />
         <FilterByMomments />
-        <NewStuff />
-        <BasedOnFav />
+        <NewStuff route={navigation} />
+        <BasedOnFav route={navigation} />
       </ScrollView>
     </SafeAreaView>
   );
