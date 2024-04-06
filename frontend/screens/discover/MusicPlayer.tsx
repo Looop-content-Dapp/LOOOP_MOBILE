@@ -59,9 +59,13 @@ const MusicPlayer = () => {
         <View className="flex-row items-center justify-between w-full px-[30px] py-3">
           <View>
             <Text className="text-[#fff] text-[24px]">{title}</Text>
-            <Text className="text-[#D2D3D5] text-[18px] font-semibold">
-              {artist}
-            </Text>
+            <View className="flex-row space-x-2 items-center">
+              {artist.map((item, index) => (
+                <Text key={index} className="text-[#fff] font-bold text-sm">
+                  {item}
+                </Text>
+              ))}
+            </View>
           </View>
           <TouchableOpacity className="border border-[#Fff] p-2 rounded-[32px]">
             <Icon name="heart-outlined" color="white" size={24} />

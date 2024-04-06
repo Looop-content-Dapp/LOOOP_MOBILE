@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {View, ScrollView, Text, Pressable, Image} from 'react-native';
 import React from 'react';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
@@ -10,7 +9,7 @@ type Props = {
 const BasedOnFav = ({route}: Props) => {
   return (
     <View className="h-[254px]">
-      <Text className="text-[#fff] text-[18px]">
+      <Text className="text-[#fff] text-[20px] font-bold">
         Based on artistes you subscribed to
       </Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -33,7 +32,9 @@ const BasedOnFav = ({route}: Props) => {
               className="w-[140px] h-[140px] m-[8px] rounded-full bg-white"
             />
             <View>
-              <Text className="text-[#fff] font-bold text-[14px]">{item.name}</Text>
+              <Text className="text-[#fff] font-bold text-[14px]">
+                {item.name}
+              </Text>
             </View>
           </Pressable>
         ))}

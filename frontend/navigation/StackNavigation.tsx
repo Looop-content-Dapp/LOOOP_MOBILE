@@ -112,6 +112,7 @@ const StackNavigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
+        initialRouteName="Home"
         screenOptions={{
           tabBarActiveTintColor: '#FF6D1B', // Color for active state
           tabBarInactiveTintColor: 'gray', // Color for inactive state
