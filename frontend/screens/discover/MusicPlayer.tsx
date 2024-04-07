@@ -162,7 +162,11 @@ const MusicPlayer = () => {
         }}>
         <ShareBottomSheet title={title} image={image} artist={artist} />
       </BottomSheet>
-      <GiftCreatorModal modalVisible={modalVisible} toggleModal={toggleModal} />
+      <GiftCreatorModal
+        modalVisible={modalVisible}
+        toggleModal={toggleModal}
+        artist={artist}
+      />
     </SafeAreaView>
   );
 };

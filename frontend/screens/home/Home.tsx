@@ -2,15 +2,13 @@
 import {View, Text, Image, ScrollView} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import BasedOnFav from '../../components/discover/BasedOnFav';
-import {NavigationProp, ParamListBase} from '@react-navigation/native';
 import HandPicked from '../../components/HandPicked';
+import RecentlyPlayed from '../../components/RecentlyPlayed';
+import {SubscribeProps} from '../../export';
+import BasedOnSubscription from '../../components/home/BasedOnSubscription';
+import CurrentlyLive from '../../components/home/CurrentlyLive';
 
-type Props = {
-  navigation: NavigationProp<ParamListBase>;
-};
-
-const Home = ({navigation}: Props) => {
+const Home = ({navigation}: SubscribeProps) => {
   return (
     <SafeAreaView style={{flex: 1, minHeight: '100%'}}>
       <View className="flex-row items-center justify-between w-full px-5 py-2.5">
@@ -42,8 +40,10 @@ const Home = ({navigation}: Props) => {
         contentContainerStyle={{
           padding: 16,
         }}>
+        <RecentlyPlayed />
         <HandPicked route={navigation} />
-        <BasedOnFav route={navigation} />
+        <CurrentlyLive />
+        <BasedOnSubscription route={navigation} />
       </ScrollView>
     </SafeAreaView>
   );

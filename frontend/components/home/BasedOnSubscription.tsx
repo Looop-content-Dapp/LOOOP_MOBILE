@@ -6,7 +6,7 @@ import {artistsArr} from '../../utils/ArtistArr';
 type Props = {
   route: NavigationProp<ParamListBase>;
 };
-const BasedOnFav = ({route}: Props) => {
+const BasedOnSubscription = ({route}: Props) => {
   return (
     <View className="h-[254px]">
       <Text className="text-[#fff] text-[20px] font-bold">
@@ -16,12 +16,15 @@ const BasedOnFav = ({route}: Props) => {
         {artistsArr.map((item, index) => (
           <Pressable
             onPress={() =>
-              route.navigate('Subscribe', {
-                image: item.image,
-                name: item.name,
-                follow: item.followers,
-                owner: item.owner,
-                desc: item.description,
+              route.navigate('Home', {
+                screen: 'Subscribe',
+                params: {
+                  image: item.image,
+                  name: item.name,
+                  follow: item.followers,
+                  owner: item.owner,
+                  desc: item.description,
+                },
               })
             }
             key={index}
@@ -44,4 +47,4 @@ const BasedOnFav = ({route}: Props) => {
   );
 };
 
-export default BasedOnFav;
+export default BasedOnSubscription;

@@ -1,7 +1,11 @@
 import {View, ScrollView, Text, Image, Pressable} from 'react-native';
 import React from 'react';
 import {newStuff} from '../utils';
-import {NavigationProp, ParamListBase} from '@react-navigation/native';
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
 
 type Props = {
   route: NavigationProp<ParamListBase>;
@@ -21,12 +25,15 @@ const HandPicked = ({route}: Props) => {
           <Pressable
             key={index}
             onPress={() =>
-              route.navigate('MusicPage', {
-                title: item.title,
-                image: item.image,
-                track: item.tracks,
-                type: item.type,
-                artist: item.artist,
+              route.navigate('Home', {
+                screen: 'MusicPage',
+                params: {
+                  title: item.title,
+                  image: item.image,
+                  track: item.tracks,
+                  type: item.type,
+                  artist: item.artist,
+                },
               })
             }
             className="flex items-center min-w-[140px] h-[214px] rounded-lg m-2">

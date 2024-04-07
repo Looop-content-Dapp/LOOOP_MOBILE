@@ -36,7 +36,8 @@ interface RootStackParamList {
   image: string;
   name: string;
   follow: string;
-  owner: string; // Make sure this property is correctly defined
+  owner: string;
+  desc: string;
 }
 
 type Props = {
@@ -49,7 +50,7 @@ const Subscribe = ({navigation}: Props) => {
   const {params} = route as {params: RootStackParamList};
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DocumentData[]>();
-  const {follow, image, name, owner} = params;
+  const {follow, image, name, owner, desc} = params;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -128,6 +129,7 @@ const Subscribe = ({navigation}: Props) => {
           image={image}
           name={name}
           follow={follow}
+          desc={desc}
         />
         <SelectionTab tabs={tabs} loading={loading} results={result} />
       </ScrollView>

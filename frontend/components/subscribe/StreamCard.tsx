@@ -11,7 +11,6 @@ type Props = {
 
 const StreamCard = ({stream}: Props) => {
   const {navigate} = useNavigation();
-  const {joinroom} = useMeeting();
   const truncateText = (text: string, maxLength: number) => {
     if (text.length <= maxLength) {
       return text;
@@ -21,7 +20,7 @@ const StreamCard = ({stream}: Props) => {
 
   let description = stream.description;
   return (
-    <View className="w-[90%] bg-[#12141B] h-[179px] p-2.5 rounded-[15px]">
+    <View className="w-[391px] bg-[#12141B] h-[179px] p-2.5 rounded-[15px]">
       <View>
         <View className="flex-row items-start space-x-2">
           <Image
