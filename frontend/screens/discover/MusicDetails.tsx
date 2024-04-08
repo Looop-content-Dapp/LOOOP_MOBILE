@@ -11,6 +11,7 @@ import {
 import React, {useState} from 'react';
 import {useRoute, useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Entypo';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface MusicDetailsParams {
   title?: string; // Use optional chaining in case 'title' is not always provided
@@ -37,13 +38,24 @@ const MusicDetails = () => {
 
   const {title, artist, image, track, type} = params;
 
-  const handleTrackSelection = (trackItem: any) => {
+  const handleTrackSelection = async (trackItem: any) => {
     setSelectedTrack(trackItem);
     navigate('MusicPlayer', {
       title: trackItem.title,
-      artist: trackItem.artist, // Assuming you want to pass the selected track item
+      artist: trackItem.artist,
       image: image,
     });
+    try {
+      let currentTrack = {
+        title: trackItem.title,
+        artist: trackItem.artist,
+        image: image,
+      };
+      await AsyncStorage.setItem('selectedTrack', JSON.stringify(currentTrack));
+      console.log('Track data stored successfully');
+    } catch (error) {
+      console.error('Error storing track data', error);
+    }
   };
 
   return (

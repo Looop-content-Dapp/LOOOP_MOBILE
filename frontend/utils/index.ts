@@ -322,8 +322,8 @@ export const artistsArr = [
         community: 10,
       },
     },
-    followers: 1200,
-    following: 350,
+    followers: 1200000,
+    following: 3500000,
     external_links: [
       {
         name: 'Auction',
@@ -336,7 +336,7 @@ export const artistsArr = [
     ],
   },
   {
-    name: 'David Dreamer',
+    name: 'Burna Boy',
     owner: '0xCD387d3D0F41dD17Fe0c2f9462fDEC6B54D7819D',
     description:
       'A dream-inspired artist, turning imagination into captivating visual experiences.',

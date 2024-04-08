@@ -1,27 +1,39 @@
 import {View, ScrollView, Text, Image, Pressable} from 'react-native';
 import React from 'react';
-import {newStuff} from '../../utils';
-import {NavigationProp, ParamListBase} from '@react-navigation/native';
+import {newStuff} from '../utils';
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
 
 type Props = {
   route: NavigationProp<ParamListBase>;
 };
 
-const NewStuff = ({route}: Props) => {
+const HandPicked = ({route}: Props) => {
   return (
-    <View className="h-[254px] mt-3">
-      <Text className="text-[#fff] text-[20px] font-bold">New on the block</Text>
+    <View className="h-[268px] mt-3">
+      <View className="flex-row items-center justify-between w-full px-3">
+        <Text className="text-[#fff] text-[20px] font-bold">
+          Handpicked just for you
+        </Text>
+        <Text className="text-[#fff] text-[14px] font-bold">see more</Text>
+      </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {newStuff.map((item, index) => (
           <Pressable
             key={index}
             onPress={() =>
-              route.navigate('MusicPage', {
-                title: item.title,
-                image: item.image,
-                track: item.tracks,
-                type: item.type,
-                artist: item.artist,
+              route.navigate('Home', {
+                screen: 'MusicPage',
+                params: {
+                  title: item.title,
+                  image: item.image,
+                  track: item.tracks,
+                  type: item.type,
+                  artist: item.artist,
+                },
               })
             }
             className="flex items-center min-w-[140px] h-[214px] rounded-lg m-2">
@@ -50,4 +62,4 @@ const NewStuff = ({route}: Props) => {
   );
 };
 
-export default NewStuff;
+export default HandPicked;

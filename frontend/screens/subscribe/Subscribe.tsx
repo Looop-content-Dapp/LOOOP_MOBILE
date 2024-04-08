@@ -19,7 +19,7 @@ import {BottomSheet} from '@rneui/themed';
 import {
   NavigationProp,
   ParamListBase,
-  RouteProp,
+  useRoute,
 } from '@react-navigation/native';
 import {
   DocumentData,
@@ -32,22 +32,25 @@ import {
 import {db} from '../../firebase';
 
 // Assuming you have a StackNavigator defined somewhere in your app
-type RootStackParamList = {
-  Subscribe: {image: string; name: string; follow: string; owner: string}; // Define your parameter structure here
-};
-
-type SubscribeScreenRouteProp = RouteProp<RootStackParamList, 'Subscribe'>;
+interface RootStackParamList {
+  image: string;
+  name: string;
+  follow: string;
+  owner: string;
+  desc: string;
+}
 
 type Props = {
-  route: SubscribeScreenRouteProp;
   navigation: NavigationProp<ParamListBase>;
 };
 
-const Subscribe = ({navigation, route}: Props) => {
+const Subscribe = ({navigation}: Props) => {
   const [isVisible, setIsVisible] = useState(false);
-  const {image = '', name = '', follow = '', owner} = route.params || {};
+  const route = useRoute();
+  const {params} = route as {params: RootStackParamList};
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DocumentData[]>();
+  const {follow, image, name, owner, desc} = params;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,6 +88,7 @@ const Subscribe = ({navigation, route}: Props) => {
       components: <Collectible />,
     },
   ];
+
   return (
     <SafeAreaView style={{flex: 1, minHeight: '100%'}}>
       <ScrollView>
@@ -125,6 +129,7 @@ const Subscribe = ({navigation, route}: Props) => {
           image={image}
           name={name}
           follow={follow}
+          desc={desc}
         />
         <SelectionTab tabs={tabs} loading={loading} results={result} />
       </ScrollView>

@@ -14,6 +14,8 @@ import MusicPlayer from '../screens/discover/MusicPlayer';
 import StreamDetails from '../screens/StreamDetails';
 import Home from '../screens/home/Home';
 import {Iconify} from 'react-native-iconify';
+import Streams from '../components/subscribe/Streams';
+import StreamScreen from '../screens/streams/StreamScreen';
 
 // Create a stack navigator for each tab
 const HomeStack = createNativeStackNavigator();
@@ -34,6 +36,20 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="Subscribe" component={Subscribe} />
     <HomeStack.Screen name="MintNft" component={MintNft} />
     <HomeStack.Screen name="PayNft" component={PayNft} />
+    <HomeStack.Screen
+      name="MusicPage"
+      component={MusicDetails}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <HomeStack.Screen
+      name="MusicPlayer"
+      component={MusicPlayer}
+      options={{
+        headerShown: false,
+      }}
+    />
   </HomeStack.Navigator>
 );
 
@@ -45,10 +61,10 @@ const DiscoverStackScreen = () => (
       },
     }}>
     <DiscoverStack.Screen
-      name="Discover"
+      name="DiscoverScreeen"
       component={Discover}
       options={{
-        header: () => <Header title="Library" />,
+        header: () => <Header title="Discover" />,
       }}
     />
     <DiscoverStack.Screen
@@ -100,6 +116,7 @@ const StreamsStackScreen = () => (
         backgroundColor: '#0A0B0F',
       },
     }}>
+    <StreamsStack.Screen name="Streams" component={StreamScreen} />
     <StreamsStack.Screen name="StreamPage" component={StreamDetails} />
     {/* Add more screens related to streams here */}
   </StreamsStack.Navigator>
@@ -112,11 +129,12 @@ const StackNavigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
+        initialRouteName="Home"
         screenOptions={{
           tabBarActiveTintColor: '#FF6D1B', // Color for active state
           tabBarInactiveTintColor: 'gray', // Color for inactive state
           tabBarStyle: {
-            backgroundColor: '#000',
+            backgroundColor: '#0A0B0F',
           },
           headerShown: false,
         }}>
@@ -167,7 +185,7 @@ const StackNavigation = () => {
           }}
         />
         <Tab.Screen
-          name="Streams"
+          name="Stream"
           component={StreamsStackScreen}
           options={{
             tabBarIcon: ({focused, color}) => {

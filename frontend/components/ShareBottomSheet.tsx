@@ -49,9 +49,18 @@ const ShareBottomSheet = ({artist, image, title}: Props) => {
           <Image source={image} className="w-[64px] h-[64px]" />
           <View className="space-y-3">
             <Text className="text-[#fff] font-semibold">{title}</Text>
-            <Text className="w-[46px] h-[20px] bg-[#2DD881] rounded-[16px] text-xs text-center font-black">
-              Single
-            </Text>
+            <View className="flex-row items-center space-x-2">
+              <Text className="w-[46px] h-[20px] bg-[#2DD881] rounded-[16px] text-xs text-center font-black">
+                Single
+              </Text>
+              <View className="flex-row space-x-2 items-center">
+                {artist.map((item, index) => (
+                  <Text key={index} className="text-[#fff] font-bold text-sm">
+                    {item}
+                  </Text>
+                ))}
+              </View>
+            </View>
           </View>
         </View>
         <Text className="text-[#fff] font-semibold text-[12px]">3:00</Text>

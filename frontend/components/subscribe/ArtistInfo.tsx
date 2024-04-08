@@ -3,12 +3,13 @@ import React from 'react';
 
 type Props = {
   isActive: React.Dispatch<React.SetStateAction<boolean>>;
-  image: string,
-  name: any,
-  follow: any
+  image: string;
+  name: any;
+  follow: any;
+  desc: string;
 };
 
-const ArtistInfo = ({isActive, follow, name}: Props) => {
+const ArtistInfo = ({isActive, follow, name, desc}: Props) => {
   return (
     <>
       <View className="h-[256px] m-4 space-y-[8px]">
@@ -46,12 +47,7 @@ const ArtistInfo = ({isActive, follow, name}: Props) => {
 
         <View className=" px-3 py-2.5 space-y-[8px] bg-[#12141B] rounded-[15px]">
           <Text className="text-[#787A80]">About Rema</Text>
-          <Text className="text-[#787A80] font-normal">
-            Divine Ikubor (born 1 May 2000), known professionally as Rema, is a
-            Nigerian rapper, singer and songwriter. He gained initial
-            recognition following the release of his 2019 song "Dumebi". That
-            same year, he signed with D'Prince's record label, Jonzing World.
-          </Text>
+          <Text numberOfLines={5} className="text-[#787A80] font-normal">{desc}</Text>
         </View>
       </View>
     </>
