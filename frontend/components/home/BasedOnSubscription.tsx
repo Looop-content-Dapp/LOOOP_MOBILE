@@ -24,6 +24,7 @@ const BasedOnSubscription = ({route}: Props) => {
                   follow: item.followers,
                   owner: item.owner,
                   desc: item.description,
+                  follower: item.followers,
                 },
               })
             }

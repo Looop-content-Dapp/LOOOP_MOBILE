@@ -18,6 +18,7 @@ const CurrentlyLive = () => {
             <Text className="text-[#fff] font-semibold text-[12px]">Live</Text>
           </Pressable>
         </View>
+        <Text className="text-[#fff] font-semibold text-[12px]">see more</Text>
       </View>
       <ScrollView
         horizontal
