@@ -1,5 +1,6 @@
 import {View, Text, Pressable, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {formatNumber} from '../../utils/ArtistArr';
 
 type Props = {
   isActive: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,9 +8,11 @@ type Props = {
   name: any;
   follow: any;
   desc: string;
+  follower: any;
 };
 
-const ArtistInfo = ({isActive, follow, name, desc}: Props) => {
+const ArtistInfo = ({isActive, follow, name, desc, follower}: Props) => {
+  console.log(follower);
   return (
     <>
       <View className="h-[256px] m-4 space-y-[8px]">
@@ -25,10 +28,10 @@ const ArtistInfo = ({isActive, follow, name, desc}: Props) => {
 
         <View className="flex-row items-center space-x-3">
           <Text className="text-[16px] font-semibold text-[#787A80]">
-            {follow}M Followers
+            {formatNumber(follow)} Followers
           </Text>
           <Text className="text-[16px] font-semibold text-[#787A80]">
-            45M Subscriber
+            {formatNumber(follower)} Followers
           </Text>
         </View>
 
@@ -47,7 +50,9 @@ const ArtistInfo = ({isActive, follow, name, desc}: Props) => {
 
         <View className=" px-3 py-2.5 space-y-[8px] bg-[#12141B] rounded-[15px]">
           <Text className="text-[#787A80]">About Rema</Text>
-          <Text numberOfLines={5} className="text-[#787A80] font-normal">{desc}</Text>
+          <Text numberOfLines={5} className="text-[#787A80] font-normal">
+            {desc}
+          </Text>
         </View>
       </View>
     </>

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Modal,
   ImageBackground,
+  Linking,
 } from 'react-native';
 import React, {useState} from 'react';
 import {RouteProp, useRoute} from '@react-navigation/native';
@@ -100,7 +101,12 @@ const MintNft = ({navigation}: MintNftProps) => {
               <View className="items-center space-y-[30px]">
                 <Image source={require('../../assets/images/card.png')} />
                 <TouchableOpacity
-                  onPress={() => setSuccess(true)}
+                  onPress={() => {
+                    setSuccess(true);
+                    Linking.openURL(
+                      'https://app.dev.hel.io/s/6612af20d1253ae4aa70b7d2',
+                    );
+                  }}
                   className="w-full items-center bg-[#A94FB4] py-5 mt-[30x] rounded-[50px]">
                   <Text className="text-[16px] font-bold text-[#ffff]">
                     Mint subscriber NFT

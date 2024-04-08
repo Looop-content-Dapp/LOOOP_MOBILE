@@ -35,9 +35,10 @@ import {db} from '../../firebase';
 interface RootStackParamList {
   image: string;
   name: string;
-  follow: string;
+  follow: number;
   owner: string;
   desc: string;
+  follower: number;
 }
 
 type Props = {
@@ -50,7 +51,7 @@ const Subscribe = ({navigation}: Props) => {
   const {params} = route as {params: RootStackParamList};
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DocumentData[]>();
-  const {follow, image, name, owner, desc} = params;
+  const {follow, image, name, owner, desc, follower} = params;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -130,6 +131,7 @@ const Subscribe = ({navigation}: Props) => {
           name={name}
           follow={follow}
           desc={desc}
+          follower={follower}
         />
         <SelectionTab tabs={tabs} loading={loading} results={result} />
       </ScrollView>
