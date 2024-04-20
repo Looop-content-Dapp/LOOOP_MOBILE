@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, FlatList, TextInput, Pressable} from 'react-native';
@@ -6,13 +7,12 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Iconify} from 'react-native-iconify';
 import {TouchableOpacity} from 'react-native';
 import {Animated} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { SubscribeProps } from 'export';
 
-const SelectArtist = () => {
-  const [selectedArtists, setSelectedArtists] = useState([]);
+const SelectArtist = ({navigation}: SubscribeProps) => {
+  const [selectedArtists, setSelectedArtists] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false); // State for loading
   const [animation] = useState(new Animated.Value(0)); // Create an animated value
-  const navigation = useNavigation(); // Get the navigation object
 
   useEffect(() => {
     if (isLoading) {
@@ -30,28 +30,24 @@ const SelectArtist = () => {
           }),
         ]),
         {
-          iterations: -1, 
+          iterations: -1,
         },
       ).start();
 
       // Route to homepage after 5 seconds
       setTimeout(() => {
-        navigation.navigate('TabNavigator'); 
+        navigation.navigate('TabNavigator');
       }, 5000);
     }
   }, [isLoading, animation, navigation]);
 
-  const handleSelectArtist = artist => {
+  const handleSelectArtist = (artist: any) => {
     const isSelected = selectedArtists.includes(artist);
     if (isSelected) {
       setSelectedArtists(selectedArtists.filter(a => a !== artist));
     } else {
       const newSelectedArtists = [...selectedArtists, artist];
       setSelectedArtists(newSelectedArtists);
-      if (newSelectedArtists.length >= 3) {
-        // Check if 3 creators are selected
-        setIsLoading(true); // Set loading state to true
-      }
     }
   };
 
@@ -59,7 +55,12 @@ const SelectArtist = () => {
   if (isLoading) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Image source={require('../../assets/images/loading.png')} />
+        <Animated.Image
+          source={require('../../assets/images/loading.png')}
+          style={{
+            transform: [{scale: animation}], // Apply the animation to the scale property
+          }}
+        />
         <Text className="text-[#fff] text-[20px] font-black">
           Building your home feed
         </Text>
@@ -70,7 +71,7 @@ const SelectArtist = () => {
     );
   }
 
-  const renderItem = ({item}) => (
+  const renderItem = (item: any) => (
     <Pressable
       onPress={() => handleSelectArtist(item)}
       style={{
@@ -148,7 +149,13 @@ const SelectArtist = () => {
         )}
       />
       <View className="w-full items-center absolute bottom-0">
-        <TouchableOpacity className="bg-[#FF6D1B] h-[60px] w-[95%] ml-6 flex-row space-x-9 items-center justify-center rounded-[48px]">
+        <TouchableOpacity
+          onPress={() => {
+            if (selectedArtists.length >= 3) {
+              setIsLoading(true);
+            }
+          }}
+          className="bg-[#FF6D1B] h-[60px] w-[95%] ml-6 flex-row space-x-9 items-center justify-center rounded-[48px]">
           <Text className="text-[16px] text-[#fff] font-bold">Continue</Text>
         </TouchableOpacity>
       </View>

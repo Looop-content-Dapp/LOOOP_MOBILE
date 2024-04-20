@@ -4,7 +4,7 @@ import React from 'react';
 const Library = () => {
   return (
     <View>
-      <Text>Library</Text>
+      <View></View>
     </View>
   );
 };

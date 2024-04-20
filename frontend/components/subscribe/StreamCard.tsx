@@ -75,6 +75,7 @@ const StreamCard = ({stream}: Props) => {
               image: stream?.image,
               desc: stream?.description,
               title: stream.title,
+              name: stream.name
             })
           }
           className="bg-[#2DD881] px-6 py-2.5 rounded-[48px]">

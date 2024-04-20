@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, SafeAreaView, Image, Alert} from 'react-native';
+import {View, Text, SafeAreaView, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import ConnectButton from '../../components/ConnectButton';
 import {useAuthorization} from '../../providers/AuthorizationProvider';
@@ -84,7 +84,7 @@ const ConnectWallet = ({navigation}: SubscribeProps) => {
 
         <View className="w-full items-center absolute bottom-0">
           <TouchableOpacity
-            //   onPress={() => navigation.navigate('connectWallet')}
+              onPress={() => navigation.navigate('TabNavigator')}
             className="border border-[#ffffffff] h-[60px] w-[90%] flex-row space-x-9 items-center justify-center rounded-[48px]">
             <Text className="text-[16px] text-[#fff] font-light">
               Don’t have a wallet? Create one here

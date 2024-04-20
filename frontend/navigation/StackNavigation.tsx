@@ -47,13 +47,6 @@ const HomeStackScreen = () => (
         headerShown: false,
       }}
     />
-    <HomeStack.Screen
-      name="MusicPlayer"
-      component={MusicPlayer}
-      options={{
-        headerShown: false,
-      }}
-    />
   </HomeStack.Navigator>
 );
 
@@ -85,13 +78,6 @@ const DiscoverStackScreen = () => (
         headerShown: false,
       }}
     />
-    <DiscoverStack.Screen
-      name="MusicPlayer"
-      component={MusicPlayer}
-      options={{
-        headerShown: false,
-      }}
-    />
   </DiscoverStack.Navigator>
 );
 
@@ -119,11 +105,7 @@ const StreamsStackScreen = () => (
       contentStyle: {
         backgroundColor: '#0A0B0F',
       },
-    }}>
-    <StreamsStack.Screen name="Streams" component={StreamScreen} />
-    <StreamsStack.Screen name="StreamPage" component={StreamDetails} />
-    {/* Add more screens related to streams here */}
-  </StreamsStack.Navigator>
+    }}></StreamsStack.Navigator>
 );
 
 // Create the tab navigator
@@ -181,7 +163,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Stream"
-        component={StreamsStackScreen}
+        component={StreamScreen}
         options={{
           tabBarIcon: ({focused, color}) => {
             return (
@@ -270,6 +252,20 @@ const StackNavigation = () => {
           name="Select"
           component={SelectArtist}
           options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="MusicPlayer"
+          component={MusicPlayer}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <RootStack.Screen
+          name="StreamPage"
+          component={StreamDetails}
+          options={{
+            headerShown: false,
+          }}
         />
       </RootStack.Navigator>
     </NavigationContainer>
