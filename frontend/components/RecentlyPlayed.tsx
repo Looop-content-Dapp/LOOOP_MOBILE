@@ -35,7 +35,10 @@ const RecentlyPlayed = () => {
       <View className="flex-row justify-between p-3">
         <View className="flex-row space-x-3">
           {!currentTrack?.image ? (
-            <View className="h-[100px] w-[100px] rounded-[10px] bg-white" />
+            <Image
+              source={require('../assets/images/music.jpg')}
+              className="h-[100px] w-[100px] rounded-[10px]"
+            />
           ) : (
             <Image
               source={currentTrack?.image}
@@ -45,7 +48,7 @@ const RecentlyPlayed = () => {
 
           <View className="">
             <Text className="text-[18px] text-[#ffffff] font-bold">
-              {currentTrack?.title}
+              {currentTrack?.title ? currentTrack?.title : 'Not Playing'}
             </Text>
             <View className="flex-row items-center space-x-2">
               {currentTrack?.artist.map((item, index) => (

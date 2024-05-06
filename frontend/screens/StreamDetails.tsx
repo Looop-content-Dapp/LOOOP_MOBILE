@@ -106,10 +106,7 @@ const Subscribe = ({navigation}: Props) => {
             About this stream
           </Text>
           <Text className="text-[#A5A6AA] text-[14px] font-medium">
-            Vibes with Remy Boy is a weekly AMA space where everyone can come
-            vibe with Rema aka Remmy Boy and ask him anything that’s on your
-            mind.This space is exclusively for Rema subscribers and community
-            NFT holders.
+           {desc}
           </Text>
         </View>
 

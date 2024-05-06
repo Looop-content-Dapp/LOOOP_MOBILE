@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -10,22 +11,22 @@ import Library from '../screens/libraryScreen/Library';
 import {Discover} from '../screens/discover';
 import Search from '../screens/discover/Search';
 import MusicDetails from '../screens/discover/MusicDetails';
-import MusicPlayer from '../screens/discover/MusicPlayer';
 import StreamDetails from '../screens/StreamDetails';
 import Home from '../screens/home/Home';
 import {Iconify} from 'react-native-iconify';
-import Streams from '../components/subscribe/Streams';
 import StreamScreen from '../screens/streams/StreamScreen';
 import Splash from '../screens/Splash';
 import Onboard from '../screens/Onboard';
 import ConnectWallet from '../screens/connectWallet/ConnectWallet';
 import SelectArtist from '../screens/connectWallet/SelectArtist';
+import {View} from 'react-native';
+import MusicControl from '../components/MusicControl';
+import MusicPlayer from '../screens/discover/MusicPlayer';
 
 // Create a stack navigator for each tab
 const HomeStack = createNativeStackNavigator();
 const DiscoverStack = createNativeStackNavigator();
 const LibraryStack = createNativeStackNavigator();
-const StreamsStack = createNativeStackNavigator();
 
 // Define the screens for each stack
 const HomeStackScreen = () => (
@@ -98,120 +99,125 @@ const LibraryStackScreen = () => (
   </LibraryStack.Navigator>
 );
 
-const StreamsStackScreen = () => (
-  <StreamsStack.Navigator
-    screenOptions={{
-      headerShown: false,
-      contentStyle: {
-        backgroundColor: '#0A0B0F',
-      },
-    }}></StreamsStack.Navigator>
-);
-
 // Create the tab navigator
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator
-      initialRouteName="HomeStackScreen"
-      screenOptions={{
-        tabBarActiveTintColor: '#FF6D1B', // Color for active state
-        tabBarInactiveTintColor: 'gray', // Color for inactive state
-        tabBarStyle: {
-          backgroundColor: '#0A0B0F',
-        },
-        headerShown: false,
+    <View
+      style={{
+        flex: 1,
+        minHeight: '100%',
+        position: 'relative',
       }}>
-      <Tab.Screen
-        name="Home"
-        component={HomeStackScreen}
-        options={{
-          tabBarIcon: ({focused, color}) => {
-            return (
-              <>
-                {focused ? (
-                  <Iconify icon="iconamoon:home-fill" size={24} color={color} />
-                ) : (
-                  <Iconify
-                    icon="iconamoon:home-duotone"
-                    size={24}
-                    color={color}
-                  />
-                )}
-              </>
-            );
+      <Tab.Navigator
+        initialRouteName="HomeStackScreen"
+        screenOptions={{
+          tabBarActiveTintColor: '#FF6D1B', // Color for active state
+          tabBarInactiveTintColor: 'gray', // Color for inactive state
+          tabBarStyle: {
+            backgroundColor: '#0A0B0F',
           },
-        }}
-      />
-      <Tab.Screen
-        name="Discover"
-        component={DiscoverStackScreen}
-        options={{
-          tabBarIcon: ({focused, color}) => {
-            return (
-              <>
-                {focused ? (
-                  <Iconify icon="mdi:compass" size={24} color={color} />
-                ) : (
-                  <Iconify icon="mdi:compass-outline" size={24} color={color} />
-                )}
-              </>
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="Stream"
-        component={StreamScreen}
-        options={{
-          tabBarIcon: ({focused, color}) => {
-            return (
-              <>
-                {focused ? (
-                  <Iconify
-                    icon="solar:soundwave-bold"
-                    size={24}
-                    color={color}
-                  />
-                ) : (
-                  <Iconify
-                    icon="solar:soundwave-bold-duotone"
-                    size={24}
-                    color={color}
-                  />
-                )}
-              </>
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="Library"
-        component={LibraryStackScreen}
-        options={{
-          tabBarIcon: ({focused, color}) => {
-            return (
-              <>
-                {focused ? (
-                  <Iconify
-                    icon="fluent:library-24-filled"
-                    size={24}
-                    color={color}
-                  />
-                ) : (
-                  <Iconify
-                    icon="fluent:library-20-regular"
-                    size={24}
-                    color={color}
-                  />
-                )}
-              </>
-            );
-          },
-        }}
-      />
-    </Tab.Navigator>
+          headerShown: false,
+        }}>
+        <Tab.Screen
+          name="Home"
+          component={HomeStackScreen}
+          options={{
+            tabBarIcon: ({focused, color}) => {
+              return (
+                <>
+                  {focused ? (
+                    <Iconify
+                      icon="iconamoon:home-fill"
+                      size={24}
+                      color={color}
+                    />
+                  ) : (
+                    <Iconify
+                      icon="iconamoon:home-duotone"
+                      size={24}
+                      color={color}
+                    />
+                  )}
+                </>
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Discover"
+          component={DiscoverStackScreen}
+          options={{
+            tabBarIcon: ({focused, color}) => {
+              return (
+                <>
+                  {focused ? (
+                    <Iconify icon="mdi:compass" size={24} color={color} />
+                  ) : (
+                    <Iconify
+                      icon="mdi:compass-outline"
+                      size={24}
+                      color={color}
+                    />
+                  )}
+                </>
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Stream"
+          component={StreamScreen}
+          options={{
+            tabBarIcon: ({focused, color}) => {
+              return (
+                <>
+                  {focused ? (
+                    <Iconify
+                      icon="solar:soundwave-bold"
+                      size={24}
+                      color={color}
+                    />
+                  ) : (
+                    <Iconify
+                      icon="solar:soundwave-bold-duotone"
+                      size={24}
+                      color={color}
+                    />
+                  )}
+                </>
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Library"
+          component={LibraryStackScreen}
+          options={{
+            tabBarIcon: ({focused, color}) => {
+              return (
+                <>
+                  {focused ? (
+                    <Iconify
+                      icon="fluent:library-24-filled"
+                      size={24}
+                      color={color}
+                    />
+                  ) : (
+                    <Iconify
+                      icon="fluent:library-20-regular"
+                      size={24}
+                      color={color}
+                    />
+                  )}
+                </>
+              );
+            },
+          }}
+        />
+      </Tab.Navigator>
+    </View>
   );
 };
 

@@ -2,9 +2,12 @@
 import React from 'react';
 import {View, Text, SafeAreaView, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native';
-import ConnectButton from '../../components/ConnectButton';
 import {useAuthorization} from '../../providers/AuthorizationProvider';
 import {SubscribeProps} from 'export';
+import {
+  ConnectPhanthomButton,
+  ConnectWithOkto,
+} from '../../components/connectButtons/index';
 
 const ConnectWallet = ({navigation}: SubscribeProps) => {
   const {selectedAccount} = useAuthorization();
@@ -39,7 +42,7 @@ const ConnectWallet = ({navigation}: SubscribeProps) => {
         </View>
         <View className="w-full items-center absolute bottom-0">
           <TouchableOpacity
-              onPress={() => navigation.navigate('Select')}
+            onPress={() => navigation.navigate('Select')}
             className="bg-[#FF6D1B] h-[60px] w-[90%] flex-row space-x-9 items-center justify-center rounded-[48px]">
             <Text className="text-[16px] text-[#fff] font-bold">Continue</Text>
           </TouchableOpacity>
@@ -68,23 +71,13 @@ const ConnectWallet = ({navigation}: SubscribeProps) => {
         </View>
 
         <View className="items-center justify-center pt-[50px] space-y-6">
-          <ConnectButton title="Connect Phanthom Wallet" />
-          <TouchableOpacity
-            //   onPress={() => navigation.navigate('connectWallet')}
-            className="bg-[#ffffffff] h-[60px] w-[90%] flex-row space-x-9 items-center justify-center rounded-[48px]">
-            <Image
-              source={require('../../assets/images/okto.png')}
-              className="w-[24.02px] h-[20px]"
-            />
-            <Text className="text-[16px] text-[#000] font-medium">
-              Connect Okto Wallet
-            </Text>
-          </TouchableOpacity>
+          <ConnectPhanthomButton title="Connect Phanthom Wallet" />
+          <ConnectWithOkto title="Connect Okto Wallet" />
         </View>
 
         <View className="w-full items-center absolute bottom-0">
           <TouchableOpacity
-              onPress={() => navigation.navigate('TabNavigator')}
+            onPress={() => navigation.navigate('TabNavigator')}
             className="border border-[#ffffffff] h-[60px] w-[90%] flex-row space-x-9 items-center justify-center rounded-[48px]">
             <Text className="text-[16px] text-[#fff] font-light">
               Don’t have a wallet? Create one here
