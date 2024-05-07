@@ -25,7 +25,6 @@ const RecentlyPlayed = () => {
         console.error('Error fetching track data', error);
       }
     };
-
     fetchTrackData();
   }, [currentTrack]); // Empty dependency array means this effect runs once on mount
 
