@@ -15,4 +15,4 @@ Looop addresses the pain points of disconnectedness and unfair compensation prev
 Looop's solution revolves around creating a vibrant and transparent music streaming platform that fosters meaningful connections between artists and listeners. By implementing transparent revenue-sharing models, authentic community engagement features, and fair compensation mechanisms for artists, Looop ensures that both artists and listeners feel valued and connected. Through personalized recommendations, exclusive content, and interactive community features, Looop enhances the music streaming experience, empowering artists to thrive and listeners to engage more deeply with their favorite music.
 
 
-[Twitter](https://twitter.com/looop_music) [Website](www.looopmusic.xyz)
+https://twitter.com/looop_music www.looopmusic.xyz
