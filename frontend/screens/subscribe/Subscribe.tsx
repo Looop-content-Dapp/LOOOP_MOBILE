@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Animated,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -52,6 +53,7 @@ const Subscribe = ({navigation}: Props) => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DocumentData[]>();
   const {follow, image, name, owner, desc, follower} = params;
+  const scrollY = new Animated.Value(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,39 +94,38 @@ const Subscribe = ({navigation}: Props) => {
 
   return (
     <SafeAreaView style={{flex: 1, minHeight: '100%'}}>
+      {image ? (
+        <ImageBackground
+          source={{
+            uri: image,
+          }}
+          className="h-[300px] w-[100%]">
+          <Pressable
+            onPress={() => navigation.goBack()}
+            className="border-2 border-[#fff] h-[30px] w-[30px] rounded-full p-2 items-center justify-center">
+            <Image
+              source={require('../../assets/images/arrow.png')}
+              className="h-[20px] w-[20px]"
+            />
+          </Pressable>
+        </ImageBackground>
+      ) : (
+        <ImageBackground
+          source={{
+            uri: image,
+          }}
+          className="h-[200px] w-[100%]">
+          <Pressable
+            onPress={() => navigation.goBack()}
+            className="border-2 border-[#fff] h-[30px] w-[30px] rounded-full p-2 items-center justify-center">
+            <Image
+              source={require('../../assets/images/arrow.png')}
+              className="h-[20px] w-[20px]"
+            />
+          </Pressable>
+        </ImageBackground>
+      )}
       <ScrollView>
-        {image ? (
-          <ImageBackground
-            source={{
-              uri: image,
-            }}
-            className="h-[200px] w-[100%]">
-            <Pressable
-              onPress={() => navigation.goBack()}
-              className="border-2 border-[#fff] h-[30px] w-[30px] rounded-full p-2 items-center justify-center">
-              <Image
-                source={require('../../assets/images/arrow.png')}
-                className="h-[20px] w-[20px]"
-              />
-            </Pressable>
-          </ImageBackground>
-        ) : (
-          <ImageBackground
-            source={{
-              uri: image,
-            }}
-            className="h-[200px] w-[100%]">
-            <Pressable
-              onPress={() => navigation.goBack()}
-              className="border-2 border-[#fff] h-[30px] w-[30px] rounded-full p-2 items-center justify-center">
-              <Image
-                source={require('../../assets/images/arrow.png')}
-                className="h-[20px] w-[20px]"
-              />
-            </Pressable>
-          </ImageBackground>
-        )}
-
         <ArtistInfo
           isActive={setIsVisible}
           image={image}
@@ -149,7 +150,7 @@ const Subscribe = ({navigation}: Props) => {
             className="h-[251px] w-full"
           />
           <View className="items-center w-[318px] mt-[30px] space-y-[20px]">
-            <Text className="text-[#fff] text-[18px]">
+            <Text className="text-[#fff] text-[14px]">
               Subscribing to a creator mints their subscriber NFT. These NFTs
               could give you unlimited access to their content, livestreams,
               event and many other perks. Subscriber NFTs can be bought with
@@ -161,6 +162,8 @@ const Subscribe = ({navigation}: Props) => {
                   image: image,
                   name: name,
                   follow: follow,
+                  desc: desc,
+                  follower: follower,
                 })
               }
               className="bg-[#A94FB4] w-full items-center py-5 rounded-[38px]">

@@ -19,22 +19,22 @@ const BasedOnFav = ({route}: Props) => {
               route.navigate('Subscribe', {
                 image: item.image,
                 name: item.name,
-                follow: item.followers,
+                follow: item.following,
                 owner: item.owner,
                 desc: item.description,
                 follower: item.followers,
               })
             }
             key={index}
-            className="items-start">
+            className="items-center">
             <Image
               source={{
                 uri: item.image,
               }}
               className="w-[140px] h-[140px] m-[8px] rounded-full bg-white"
             />
-            <View>
-              <Text className="text-[#fff] font-bold text-[14px]">
+            <View className="items-center justify-center">
+              <Text className="text-[#fff] font-bold text-[16px]">
                 {item.name}
               </Text>
             </View>

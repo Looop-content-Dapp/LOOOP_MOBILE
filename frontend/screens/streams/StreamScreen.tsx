@@ -15,19 +15,21 @@ const StreamScreen = () => {
   const {data} = useDataStore();
   const [active, setActive] = useState('Live');
   return (
-    <SafeAreaView style={{flex: 1, minHeight: '100%'}}>
+    <SafeAreaView style={{flex: 1, minHeight: '100%', backgroundColor: '#000'}}>
       <Image
         source={require('../../assets/images/streamheader.png')}
         className="h-[160px] w-full"
       />
       <View className="flex-row items-center justify-evenly">
         <Pressable
+          onPress={() => setActive('Live')}
           className={`${
             active === 'Live' ? 'border-b border-[#2DD881]' : 'border-none'
           } py-6 px-12 items-center justify-center`}>
           <Text className="text-[16px] font-semibold text-[#ffffff]">Live</Text>
         </Pressable>
         <Pressable
+          onPress={() => setActive('Upcoming')}
           className={`${
             active === 'Upcoming' ? 'border-b border-[#2DD881]' : 'border-none'
           } py-6 px-12 items-center justify-center`}>
@@ -46,7 +48,7 @@ const StreamScreen = () => {
           gap: 16,
           alignItems: 'center',
         }}>
-        {data.map((item, index) => (
+        {data?.map((item: any, index: number) => (
           <StreamCard key={index} stream={item} />
         ))}
       </ScrollView>

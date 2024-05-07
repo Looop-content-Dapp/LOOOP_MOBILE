@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -10,18 +11,22 @@ import Library from '../screens/libraryScreen/Library';
 import {Discover} from '../screens/discover';
 import Search from '../screens/discover/Search';
 import MusicDetails from '../screens/discover/MusicDetails';
-import MusicPlayer from '../screens/discover/MusicPlayer';
 import StreamDetails from '../screens/StreamDetails';
 import Home from '../screens/home/Home';
 import {Iconify} from 'react-native-iconify';
-import Streams from '../components/subscribe/Streams';
 import StreamScreen from '../screens/streams/StreamScreen';
+import Splash from '../screens/Splash';
+import Onboard from '../screens/Onboard';
+import ConnectWallet from '../screens/connectWallet/ConnectWallet';
+import SelectArtist from '../screens/connectWallet/SelectArtist';
+import {View} from 'react-native';
+import MusicControl from '../components/MusicControl';
+import MusicPlayer from '../screens/discover/MusicPlayer';
 
 // Create a stack navigator for each tab
 const HomeStack = createNativeStackNavigator();
 const DiscoverStack = createNativeStackNavigator();
 const LibraryStack = createNativeStackNavigator();
-const StreamsStack = createNativeStackNavigator();
 
 // Define the screens for each stack
 const HomeStackScreen = () => (
@@ -39,13 +44,6 @@ const HomeStackScreen = () => (
     <HomeStack.Screen
       name="MusicPage"
       component={MusicDetails}
-      options={{
-        headerShown: false,
-      }}
-    />
-    <HomeStack.Screen
-      name="MusicPlayer"
-      component={MusicPlayer}
       options={{
         headerShown: false,
       }}
@@ -81,13 +79,6 @@ const DiscoverStackScreen = () => (
         headerShown: false,
       }}
     />
-    <DiscoverStack.Screen
-      name="MusicPlayer"
-      component={MusicPlayer}
-      options={{
-        headerShown: false,
-      }}
-    />
   </DiscoverStack.Navigator>
 );
 
@@ -108,28 +99,19 @@ const LibraryStackScreen = () => (
   </LibraryStack.Navigator>
 );
 
-const StreamsStackScreen = () => (
-  <StreamsStack.Navigator
-    screenOptions={{
-      headerShown: false,
-      contentStyle: {
-        backgroundColor: '#0A0B0F',
-      },
-    }}>
-    <StreamsStack.Screen name="Streams" component={StreamScreen} />
-    <StreamsStack.Screen name="StreamPage" component={StreamDetails} />
-    {/* Add more screens related to streams here */}
-  </StreamsStack.Navigator>
-);
-
 // Create the tab navigator
 const Tab = createBottomTabNavigator();
 
-const StackNavigation = () => {
+const TabNavigator = () => {
   return (
-    <NavigationContainer>
+    <View
+      style={{
+        flex: 1,
+        minHeight: '100%',
+        position: 'relative',
+      }}>
       <Tab.Navigator
-        initialRouteName="Home"
+        initialRouteName="HomeStackScreen"
         screenOptions={{
           tabBarActiveTintColor: '#FF6D1B', // Color for active state
           tabBarInactiveTintColor: 'gray', // Color for inactive state
@@ -186,7 +168,7 @@ const StackNavigation = () => {
         />
         <Tab.Screen
           name="Stream"
-          component={StreamsStackScreen}
+          component={StreamScreen}
           options={{
             tabBarIcon: ({focused, color}) => {
               return (
@@ -235,6 +217,63 @@ const StackNavigation = () => {
           }}
         />
       </Tab.Navigator>
+    </View>
+  );
+};
+
+// Create the root stack navigator
+const RootStack = createNativeStackNavigator();
+
+const StackNavigation = () => {
+  return (
+    <NavigationContainer>
+      <RootStack.Navigator
+        screenOptions={{
+          contentStyle: {
+            backgroundColor: '#0A0B0F',
+          },
+        }}
+        initialRouteName="Splash">
+        <RootStack.Screen
+          name="Splash"
+          component={Splash}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="Onboard"
+          component={Onboard}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="connectWallet"
+          component={ConnectWallet}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="Select"
+          component={SelectArtist}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="MusicPlayer"
+          component={MusicPlayer}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <RootStack.Screen
+          name="StreamPage"
+          component={StreamDetails}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };

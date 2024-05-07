@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Modal,
   ImageBackground,
-  Linking,
 } from 'react-native';
 import React, {useState} from 'react';
 import {RouteProp, useRoute} from '@react-navigation/native';
@@ -20,6 +19,8 @@ interface RouteParams {
   name?: string;
   image?: string;
   followers?: number;
+  desc: string;
+  follow: number;
 }
 
 const MintNft = ({navigation}: MintNftProps) => {
@@ -27,18 +28,18 @@ const MintNft = ({navigation}: MintNftProps) => {
   const [success, setSuccess] = useState(false);
   const route = useRoute<RouteProp<Record<string, RouteParams>, string>>();
   return (
-    <View className="p-[20px] flex-1 min-h-screen">
-      <View className="h-[448px] items-start  space-y-8">
+    <View className="p-[20px] flex-1 min-h-screen items-center">
+      <View className="items-start space-y-8">
         <Text className="text-[#A5A6AA] text-start font-semibold text-[16px]">
           Mint your subscriber NFT
         </Text>
         <Image
           source={require('../../assets/images/remanft.png')}
-          className="w-[382px] h-[400px] rounded-[15px] "
+          className="w-[382px] h-[500px] rounded-[15px] "
         />
       </View>
 
-      <View className="flex-row items-center justify-between w-[382px] h-[66px] mt-[8px]">
+      <View className="flex-row items-center justify-between w-[382px] h-[66px] mt-[18px]">
         <View>
           <Text className="text-[#ffffff] text-start font-semibold text-[16px]">
             {route?.params?.name} Subscribers NFT
@@ -62,7 +63,7 @@ const MintNft = ({navigation}: MintNftProps) => {
         content on Loop which include music, streams and community events.
       </Text>
 
-      <View className="absolute top-[80%] w-full items-center mx-[20px]">
+      <View className="absolute top-[90%] w-full items-center mx-[20px]">
         <TouchableOpacity
           onPress={() => setModalVisible(true)}
           className="bg-[#A94FB4] w-full items-center py-5  rounded-[38px]">
@@ -103,9 +104,9 @@ const MintNft = ({navigation}: MintNftProps) => {
                 <TouchableOpacity
                   onPress={() => {
                     setSuccess(true);
-                    Linking.openURL(
-                      'https://app.dev.hel.io/s/6612af20d1253ae4aa70b7d2',
-                    );
+                    // Linking.openURL(
+                    //   'https://app.dev.hel.io/s/6612af20d1253ae4aa70b7d2',
+                    // );
                   }}
                   className="w-full items-center bg-[#A94FB4] py-5 mt-[30x] rounded-[50px]">
                   <Text className="text-[16px] font-bold text-[#ffff]">
@@ -136,6 +137,8 @@ const MintNft = ({navigation}: MintNftProps) => {
                       name: route?.params?.name,
                       image: route?.params?.image,
                       follow: route?.params?.followers,
+                      follower: route?.params?.followers,
+                      desc: route?.params?.desc,
                     })
                   }
                   className="w-full items-center bg-[#0A0B0F] py-5 mt-[30px] rounded-[50px]">

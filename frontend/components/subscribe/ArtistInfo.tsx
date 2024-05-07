@@ -49,7 +49,7 @@ const ArtistInfo = ({isActive, follow, name, desc, follower}: Props) => {
         </View>
 
         <View className=" px-3 py-2.5 space-y-[8px] bg-[#12141B] rounded-[15px]">
-          <Text className="text-[#787A80]">About Rema</Text>
+          <Text className="text-[#787A80]">About {name}</Text>
           <Text numberOfLines={5} className="text-[#787A80] font-normal">
             {desc}
           </Text>

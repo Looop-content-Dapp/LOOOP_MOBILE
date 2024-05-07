@@ -29,23 +29,23 @@ export const DataProvider = ({children}: ContextProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const querySnapshot = await getDocs(collection(db, 'streams'));
-        const result = querySnapshot.docs.map(doc => doc.data());
-        setData(result);
-        setError(null);
-      } catch (catchError) {
-        setError(catchError);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const querySnapshot = await getDocs(collection(db, 'streams'));
+  //       const result = querySnapshot.docs.map(doc => doc.data());
+  //       // setData(result);
+  //       setError(null);
+  //     } catch (catchError) {
+  //       setError(catchError);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
   return (
     <DataContext.Provider
       value={{
