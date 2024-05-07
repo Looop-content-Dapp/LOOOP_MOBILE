@@ -1,5 +1,6 @@
-![1500x500](https://github.com/Looop-content-Dapp/LOOOP_MOBILE/assets/100144413/d4ecff13-4a8e-444b-bebe-780823a3651b)
+<img width="80" alt="Looop logomark orange-white" src="https://github.com/Looop-content-Dapp/LOOOP_MOBILE/assets/100144413/ec5c9a0c-12b7-41d8-8a41-d48e204583b8">
 
+![1500x500](https://github.com/Looop-content-Dapp/LOOOP_MOBILE/assets/100144413/d4ecff13-4a8e-444b-bebe-780823a3651b)
 
 ## LOOOP MUSIC
 Connecting Artists and Fans, One Beat at a Time
