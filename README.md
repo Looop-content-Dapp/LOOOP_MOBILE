@@ -1,5 +1,6 @@
-![1500x500](https://github.com/Looop-content-Dapp/LOOOP_MOBILE/assets/100144413/d4ecff13-4a8e-444b-bebe-780823a3651b)
+<img width="80" alt="Looop logomark orange-white" src="https://github.com/Looop-content-Dapp/LOOOP_MOBILE/assets/100144413/ec5c9a0c-12b7-41d8-8a41-d48e204583b8">
 
+![1500x500](https://github.com/Looop-content-Dapp/LOOOP_MOBILE/assets/100144413/d4ecff13-4a8e-444b-bebe-780823a3651b)
 
 ## LOOOP MUSIC
 Connecting Artists and Fans, One Beat at a Time
@@ -13,3 +14,6 @@ Looop addresses the pain points of disconnectedness and unfair compensation prev
 ## SOLUTION
 
 Looop's solution revolves around creating a vibrant and transparent music streaming platform that fosters meaningful connections between artists and listeners. By implementing transparent revenue-sharing models, authentic community engagement features, and fair compensation mechanisms for artists, Looop ensures that both artists and listeners feel valued and connected. Through personalized recommendations, exclusive content, and interactive community features, Looop enhances the music streaming experience, empowering artists to thrive and listeners to engage more deeply with their favorite music.
+
+
+https://twitter.com/looop_music www.looopmusic.xyz
