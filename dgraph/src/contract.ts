@@ -15,14 +15,14 @@ export function handleArtistAddedNFTs(event: ArtistAddedNFTsEvent): void {
   let entity = new ArtistAddedNFTs(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   );
+  
   entity.artist = event.params.artist;
-  // entity.nfts = event.params.nfts
   entity.chainid = event.params.chainid;
-
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
 
+ 
   entity.save();
 }
 
@@ -35,7 +35,6 @@ export function handleCanceledSubcription(
   entity.subcriber = event.params.subcriber;
   entity.artist = event.params.artist;
   entity.chainid = event.params.chainid;
-
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
@@ -51,7 +50,6 @@ export function handleListedMusicNFT(event: ListedMusicNFTEvent): void {
   entity.tokenId = event.params.tokenId;
   entity.artist = event.params.artist;
   entity.chainid = event.params.chainid;
-
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
@@ -63,13 +61,14 @@ export function handleSubcribedToArtist(event: SubcribedToArtistEvent): void {
   let entity = new SubcribedToArtist(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   );
+  
+  entity.blockNumber = event.block.number;
+  entity.blockTimestamp = event.block.timestamp;
+  entity.transactionHash = event.transaction.hash;
   entity.subcriber = event.params.subcriber;
   entity.artist = event.params.artist;
   entity.chainid = event.params.chainid;
 
-  entity.blockNumber = event.block.number;
-  entity.blockTimestamp = event.block.timestamp;
-  entity.transactionHash = event.transaction.hash;
 
   entity.save();
 }
